@@ -1,19 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-  </body>
+<head>
+<title>Current Time</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 72px;
+  color: #333;
+  background-color: #e7e7e7;
+  margin: 0;
+  padding-top: 20px;
+  text-align: center;
 
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
+  -webkit-app-region: drag;
+}
+
+#time { font-weight: bold; }
+#day {  }
+</style>
+
+</head>
+<body>
+
+<div id="day"></div>
+<div id="time"></div>
+
+<script>
+var days = [
+  "Sun","Mon","Tue","Wed","Thu","Fri","Sat"
+];
+var months = [
+  "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
+];
+
+function showTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = (m < 10 ? '0' : '') + m;
+  s = (s < 10 ? '0' : '') + s;
+  document.getElementById('day').innerText = days[today.getDay()]+", "+months[today.getMonth()]+" "+today.getDay();
+  document.getElementById('time').innerText = h + ":" + m + ":" + s;
+  var t = setTimeout(showTime, 500);
+}
+
+showTime();
+</script>
+
+</body>
 </html>
