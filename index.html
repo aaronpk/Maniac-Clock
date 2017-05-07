@@ -42,7 +42,7 @@ function showTime() {
   var s = today.getSeconds();
   m = (m < 10 ? '0' : '') + m;
   s = (s < 10 ? '0' : '') + s;
-  document.getElementById('day').innerText = days[today.getDay()]+", "+months[today.getMonth()]+" "+today.getDay();
+  document.getElementById('day').innerText = days[today.getDay()]+", "+months[today.getMonth()]+" "+today.getDate();
   document.getElementById('time').innerText = h + ":" + m + ":" + s;
   var t = setTimeout(showTime, 500);
 }
